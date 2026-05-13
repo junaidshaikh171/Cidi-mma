@@ -1,13 +1,17 @@
 # MMA Fighter Hub 🥊
 
-A simple MMA website built using Python, Flask, HTML, CSS, and Docker.
+A simple MMA website built using Python, Flask, HTML, CSS, Docker, Jenkins, and Kubernetes.
 
-## Features
+---
+
+# Features
 
 - View MMA fighters
-- Display wins, losses, and weight class
-- Simple responsive UI
-- Docker support
+- Responsive frontend UI
+- Docker containerization
+- Kubernetes deployment
+- CI/CD ready project
+- Beginner DevOps project
 
 ---
 
@@ -18,6 +22,9 @@ A simple MMA website built using Python, Flask, HTML, CSS, and Docker.
 - HTML
 - CSS
 - Docker
+- Kubernetes
+- Jenkins
+- GitHub
 
 ---
 
@@ -28,6 +35,8 @@ scratchtoend/
 │
 ├── app.py
 ├── Dockerfile
+├── deployment.yaml
+├── service.yaml
 ├── README.md
 │
 ├── templates/
@@ -39,7 +48,7 @@ scratchtoend/
 
 ---
 
-# Run Project Locally
+# Run Locally
 
 ## Install Flask
 
@@ -47,13 +56,13 @@ scratchtoend/
 python -m pip install flask
 ```
 
-## Run Flask App
+## Run Application
 
 ```bash
 python app.py
 ```
 
-Open in browser:
+Open:
 
 ```bash
 http://localhost:3000
@@ -75,11 +84,55 @@ docker build -t mma .
 docker run -d -p 3000:3000 --name mma-container mma
 ```
 
-Open in browser:
+Open:
 
 ```bash
 http://localhost:3000
 ```
+
+---
+
+# Kubernetes Deployment
+
+## Apply Deployment
+
+```bash
+kubectl apply -f deployment.yaml
+```
+
+## Apply Service
+
+```bash
+kubectl apply -f service.yaml
+```
+
+## Check Pods
+
+```bash
+kubectl get pods
+```
+
+## Check Services
+
+```bash
+kubectl get svc
+```
+
+Open:
+
+```bash
+http://localhost:30007
+```
+
+---
+
+# CI/CD Pipeline
+
+This project can be integrated with Jenkins for automatic:
+
+- GitHub webhook trigger
+- Docker image build
+- Kubernetes deployment
 
 ---
 
