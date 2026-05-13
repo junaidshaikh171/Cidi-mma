@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MMA Fighter Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>MMA Fighter Hub 🥊</h1>
+
+    <div class="container">
+        {% for fighter in fighters %}
+        <div class="card">
+            <h2>{{ fighter.name }}</h2>
+            <p>Wins: {{ fighter.wins }}</p>
+            <p>Losses: {{ fighter.losses }}</p>
+            <p>Weight Class: {{ fighter.weight }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

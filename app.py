@@ -1,0 +1,31 @@
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+fighters = [
+    {
+        "name": "Conor McGregor",
+        "wins": 22,
+        "losses": 6,
+        "weight": "Lightweight"
+    },
+    {
+        "name": "Khabib Nurmagomedov",
+        "wins": 29,
+        "losses": 0,
+        "weight": "Lightweight"
+    },
+    {
+        "name": "Jon Jones",
+        "wins": 27,
+        "losses": 1,
+        "weight": "Heavyweight"
+    }
+]
+
+@app.route('/')
+def home():
+    return render_template("index.html", fighters=fighters)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=3000, debug=True)
