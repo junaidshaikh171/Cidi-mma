@@ -1,0 +1,259 @@
+# MMA Fighter Hub DevOps Project 🚀
+
+## Technologies Used
+
+- Python
+- Flask
+- HTML
+- CSS
+- Docker
+- Kubernetes
+- Jenkins
+- GitHub
+
+---
+
+# Step 1: Create Project Folder
+
+```bash
+mkdir scratchtoend
+cd scratchtoend
+```
+
+---
+
+# Step 2: Install Flask
+
+```bash
+python -m pip install flask
+```
+
+---
+
+# Step 3: Run Flask App
+
+```bash
+python app.py
+```
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+---
+
+# Step 4: Build Docker Image
+
+```bash
+docker build -t mma .
+```
+
+---
+
+# Step 5: Run Docker Container
+
+```bash
+docker run -d -p 3000:3000 --name mma-container mma
+```
+
+---
+
+# Step 6: Enable Kubernetes
+
+Docker Desktop → Settings → Kubernetes → Enable Kubernetes
+
+---
+
+# Step 7: Verify Kubernetes
+
+```bash
+kubectl get nodes
+```
+
+---
+
+# Step 8: Create deployment.yaml
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: mma-deployment
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: mma
+
+  template:
+    metadata:
+      labels:
+        app: mma
+
+    spec:
+      containers:
+      - name: mma-container
+        image: mma
+        imagePullPolicy: Never
+
+        ports:
+        - containerPort: 3000
+```
+
+---
+
+# Step 9: Create service.yaml
+
+```yaml
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: mma-service
+
+spec:
+  type: NodePort
+
+  selector:
+    app: mma
+
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 30007
+```
+
+---
+
+# Step 10: Deploy to Kubernetes
+
+```bash
+kubectl apply -f deployment.yaml
+```
+
+```bash
+kubectl apply -f service.yaml
+```
+
+---
+
+# Step 11: Check Kubernetes
+
+```bash
+kubectl get pods
+```
+
+```bash
+kubectl get svc
+```
+
+---
+
+# Step 12: Jenkins Pipeline
+
+## Jenkinsfile
+
+```groovy
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: 'https://github.com/junaidshaikh171/Cidi-mma.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                bat 'docker build -t mma .'
+            }
+        }
+
+        stage('Remove Old Container') {
+            steps {
+                bat 'docker rm -f mma-container || exit 0'
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                bat 'docker run -d -p 3000:3000 --name mma-container mma'
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                bat 'kubectl apply -f deployment.yaml'
+                bat 'kubectl apply -f service.yaml'
+            }
+        }
+
+        stage('Check Kubernetes Pods') {
+            steps {
+                bat 'kubectl get pods'
+            }
+        }
+    }
+}
+```
+
+---
+
+# Step 13: Fix Kubernetes Access for Jenkins
+
+Copy:
+
+```text
+C:\Users\Admin\.kube
+```
+
+To:
+
+```text
+C:\Windows\System32\config\systemprofile\
+```
+
+Final path:
+
+```text
+C:\Windows\System32\config\systemprofile\.kube\config
+```
+
+---
+
+# Step 14: GitHub Commands
+
+```bash
+git add .
+```
+
+```bash
+git commit -m "Added Kubernetes and Jenkins setup"
+```
+
+```bash
+git push origin main
+```
+
+---
+
+# Application URLs
+
+## Docker
+
+```text
+http://localhost:3000
+```
+
+## Kubernetes
+
+```text
+http://localhost:30007
+```
