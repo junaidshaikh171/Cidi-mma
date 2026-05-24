@@ -20,7 +20,7 @@ spec:
       containers:
       - name: mma-container
         image: mma
-        imagePullPolicy: Never
+        imagePullPolicy: always
 
         ports:
         - containerPort: 3000
