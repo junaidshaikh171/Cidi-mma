@@ -1,26 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
-
 metadata:
   name: mma-deployment
-
 spec:
-  replicas: 2
-
+  replicas: 1
   selector:
     matchLabels:
       app: mma
-
   template:
     metadata:
       labels:
         app: mma
-
     spec:
       containers:
       - name: mma-container
-        image: mma
+        image: junaiddocker54/mma:latest
         imagePullPolicy: Always
-
         ports:
         - containerPort: 3000
