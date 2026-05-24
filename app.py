@@ -4,19 +4,19 @@ app = Flask(__name__)
 
 fighters = [
     {
-        "name": "Conor McGregor",
+        "name": "Junaid Shaikh",
         "wins": 22,
         "losses": 6,
         "weight": "Lightweight"
     },
     {
-        "name": "Khabib Nurmagomedov",
+        "name": "Mohammad Ali",
         "wins": 29,
         "losses": 0,
         "weight": "Lightweight"
     },
     {
-        "name": "Jon Jones",
+        "name": "Mike tyson",
         "wins": 27,
         "losses": 1,
         "weight": "Heavyweight"
