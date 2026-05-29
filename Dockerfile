@@ -1,11 +1,11 @@
-FROM python:3.14
+FROM python:3.12-slim
 
 WORKDIR /app
 
 COPY . .
 
-RUN pip install flask
+RUN pip install flask gunicorn
 
 EXPOSE 3000
 
-CMD ["python", "app.py"]
+CMD ["gunicorn", "--bind", "0.0.0.0:3000", "app:app"]
