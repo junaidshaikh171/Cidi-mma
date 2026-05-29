@@ -5,7 +5,7 @@ app = Flask(__name__)
 fighters = [
     {
         "name": "Junaid Shaikh",
-        "wins": 22,
+        "wins": 21,
         "losses": 6,
         "weight": "Lightweight"
     },
