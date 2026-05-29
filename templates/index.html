@@ -1,23 +1,425 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Junaid Deadly Fight Club </title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Apex Combat MMA — The Home of Championship Mixed Martial Arts. Events, fighters, rankings, and more." />
+  <title>APEX COMBAT | Premier MMA Organization</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
 
-    <h1>Welcome to fightclub🥊</h1>
+  <!-- ═══════════════════════════ NAV ═══════════════════════════ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="logo-apex">APEX</span>
+        <span class="logo-dot">·</span>
+        COMBAT
+      </a>
 
+      <ul class="nav-links">
+        <li><a href="#events">Events</a></li>
+        <li><a href="#fighters">Fighters</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#rankings">Rankings</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <span class="live-badge">
+          <span class="live-dot"></span> Live Soon
+        </span>
+        <a href="#events" class="btn btn-gold">Get Tickets</a>
+      </div>
+
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════ HERO ══════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-lines"></div>
+
+    <div class="hero-inner">
+      <!-- Left: Text Content -->
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-line"></span>
+          <span class="hero-eyebrow-text">World's Premier MMA Organization</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="line-1">WHERE</span>
+          <span class="line-2">LEGENDS</span>
+          <span class="line-3">ARE BORN</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          The world's most elite mixed martial arts organization. Witness history in the making — championship fights, world-class athletes, and unforgettable moments.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#events" class="btn btn-gold">Upcoming Events</a>
+          <a href="#fighters" class="btn btn-outline">Meet the Fighters</a>
+        </div>
+
+        <div class="hero-stats">
+          {% for stat in stats %}
+          <div>
+            <div class="hero-stat-value">{{ stat.value }}</div>
+            <div class="hero-stat-label">{{ stat.label }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Right: Visual -->
+      <div class="hero-visual">
+        <div class="hero-octagon">
+          <div class="octagon-ring"></div>
+          <div class="octagon-ring-2"></div>
+          <div class="octagon-core">
+            <div class="champion-badge">
+              <div class="champion-badge-title">Current Champion</div>
+              <div class="champion-badge-name">MARCUS<br>"PREDATOR"<br>STEEL</div>
+              <div class="champion-badge-record">24 - 2 - 0</div>
+            </div>
+          </div>
+
+          <div class="floating-card fc-1">
+            <div class="fc-label">Next Event</div>
+            <div class="fc-value">14 JUNE</div>
+            <div class="fc-sub">Madison Square Garden</div>
+          </div>
+
+          <div class="floating-card fc-2">
+            <div class="fc-label">Title Bouts</div>
+            <div class="fc-value">3</div>
+            <div class="fc-sub">This Season</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ TICKER ════════════════════════════ -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ticker-item">APEX COMBAT 47 — JUNE 14, 2026 — MSG NEW YORK</span>
+      <span class="ticker-item">STEEL SIGNS $50M DEAL — HISTORIC CONTRACT</span>
+      <span class="ticker-item">NAKAMURA REVEALS NEW BJJ SYSTEM IN CAMP</span>
+      <span class="ticker-item">REYES CLIMBS TO TOP 5 P4P RANKINGS</span>
+      <span class="ticker-item">IRON NIGHT 12 — JULY 5, 2026 — O2 ARENA LONDON</span>
+      <span class="ticker-item">TICKETS ON SALE NOW — LIMITED AVAILABILITY</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="ticker-item">APEX COMBAT 47 — JUNE 14, 2026 — MSG NEW YORK</span>
+      <span class="ticker-item">STEEL SIGNS $50M DEAL — HISTORIC CONTRACT</span>
+      <span class="ticker-item">NAKAMURA REVEALS NEW BJJ SYSTEM IN CAMP</span>
+      <span class="ticker-item">REYES CLIMBS TO TOP 5 P4P RANKINGS</span>
+      <span class="ticker-item">IRON NIGHT 12 — JULY 5, 2026 — O2 ARENA LONDON</span>
+      <span class="ticker-item">TICKETS ON SALE NOW — LIMITED AVAILABILITY</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ STATS BAR ═════════════════════════ -->
+  <div class="stats-bar">
     <div class="container">
-        {% for fighter in fighters %}
-        <div class="card">
-            <h2>{{ fighter.name }}</h2>
-            <p>Wins: {{ fighter.wins }}</p>
-            <p>Losses: {{ fighter.losses }}</p>
-            <p>Weight Class: {{ fighter.weight }}</p>
+      <div class="stats-grid">
+        {% for stat in stats %}
+        <div class="stat-item reveal">
+          <span class="stat-number">{{ stat.value }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
         </div>
         {% endfor %}
+      </div>
     </div>
+  </div>
+
+  <!-- ═══════════════════════ EVENTS ════════════════════════════ -->
+  <section class="events-section" id="events">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <div class="divider"></div>
+          <h2 class="section-title">UPCOMING <span>EVENTS</span></h2>
+        </div>
+        <a href="#" class="btn btn-outline">View Full Schedule</a>
+      </div>
+
+      <div class="events-grid">
+        {% for event in events %}
+        <div class="event-card {% if loop.first %}featured{% endif %} {% if event.status == 'COMPLETED' %}completed{% endif %} reveal">
+          <div class="event-left">
+            <div class="event-meta">
+              <span class="tag {% if event.status == 'UPCOMING' %}red-tag{% endif %}">{{ event.status }}</span>
+              <span class="event-date">{{ event.date }}</span>
+            </div>
+            <div class="event-title">{{ event.title }}</div>
+            <div class="event-subtitle">{{ event.subtitle }}</div>
+            <div class="event-details">
+              <span class="event-detail">
+                <span class="event-detail-icon">📍</span>
+                {{ event.location }}
+              </span>
+              <span class="event-detail">
+                <span class="event-detail-icon">🏟️</span>
+                {{ event.venue }}
+              </span>
+              <span class="event-detail">
+                <span class="event-detail-icon">🥊</span>
+                {{ event.main_event }}
+              </span>
+            </div>
+          </div>
+
+          {% if loop.first %}
+          <div class="event-card-actions">
+            <div class="event-price">Tickets from<br><strong>{{ event.tickets }}</strong></div>
+            {% if event.status == 'UPCOMING' %}
+            <a href="#" class="btn btn-red">Buy Tickets</a>
+            <a href="#" class="btn btn-outline">Event Details</a>
+            {% else %}
+            <a href="#" class="btn btn-outline">Watch Replay</a>
+            {% endif %}
+          </div>
+          {% else %}
+          <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06);">
+            <span style="font-family: var(--font-cond); font-size: 0.7rem; font-weight: 600; color: var(--grey); letter-spacing: 0.08em; text-transform: uppercase;">{{ event.tickets }}</span>
+            {% if event.status == 'UPCOMING' %}
+            <a href="#" class="btn btn-gold" style="padding: 0.5rem 1.25rem; font-size: 0.75rem;">Get Tickets</a>
+            {% else %}
+            <a href="#" class="btn btn-outline" style="padding: 0.5rem 1.25rem; font-size: 0.75rem;">Replay</a>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ FIGHTERS ══════════════════════════ -->
+  <section class="fighters-section" id="fighters">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <div class="divider"></div>
+          <h2 class="section-title">TOP <span>FIGHTERS</span></h2>
+        </div>
+        <a href="#" class="btn btn-outline">Full Roster</a>
+      </div>
+
+      <div class="fighters-grid">
+        {% for fighter in fighters %}
+        <div class="fighter-card reveal">
+          <div class="fighter-rank">#{{ loop.index }}</div>
+
+          <div class="fighter-avatar" style="background: linear-gradient(135deg, {{ fighter.accent }}22, {{ fighter.accent }}44);">
+            <span style="color: {{ fighter.accent }}; position: relative; z-index: 1;">{{ fighter.image_placeholder }}</span>
+          </div>
+
+          <div class="fighter-name">{{ fighter.name }}</div>
+          <div class="fighter-class">{{ fighter.weight_class }} · {{ fighter.nationality }}</div>
+
+          <div class="fighter-record">{{ fighter.record }}</div>
+          <div class="fighter-record-label">Win — Loss — Draw</div>
+
+          <div class="fighter-meta">
+            <span class="fighter-tag">{{ fighter.specialty }}</span>
+            <span class="fighter-tag" style="color: {{ fighter.accent }}; border-color: {{ fighter.accent }}44;">{{ fighter.rank }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ NEWS ══════════════════════════════ -->
+  <section class="news-section" id="news">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <div class="divider"></div>
+          <h2 class="section-title">LATEST <span>NEWS</span></h2>
+        </div>
+        <a href="#" class="btn btn-outline">All Stories</a>
+      </div>
+
+      <div class="news-grid">
+        {% for article in news %}
+        <div class="news-card {% if loop.first %}featured{% endif %} reveal">
+          {% if loop.first %}
+          <div class="news-card-img">
+            <div class="news-card-img-inner">MMA</div>
+          </div>
+          {% endif %}
+
+          <div class="news-category {% if article.category == 'BREAKING' %}red{% else %}gold{% endif %}">
+            {{ article.category }}
+          </div>
+
+          <div class="news-headline">{{ article.headline }}</div>
+
+          {% if loop.first %}
+          <p class="news-summary">{{ article.summary }}</p>
+          {% endif %}
+
+          <div class="news-footer">
+            <span class="news-date">{{ article.date }} · {{ article.read_time }}</span>
+            <span class="news-read-more">Read →</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ CTA BANNER ════════════════════════ -->
+  <section class="cta-banner" id="rankings">
+    <div class="container">
+      <div class="reveal">
+        <div class="tag" style="margin-bottom: 1.5rem;">Season 2026</div>
+        <h2 class="cta-title">
+          ARE YOU <span class="gold">READY</span><br>
+          TO <span class="red">FIGHT</span>?
+        </h2>
+        <p class="cta-sub">
+          Join the Apex Combat roster. Whether you're a seasoned pro or an emerging talent — we're building the future of MMA.
+        </p>
+        <div class="cta-actions">
+          <a href="#" class="btn btn-gold">Apply to Fight</a>
+          <a href="#events" class="btn btn-outline">Buy Tickets</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ FOOTER ════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">
+            <span class="gold">APEX</span> · COMBAT
+          </div>
+          <p class="footer-brand-desc">
+            The world's premier MMA organization since 2008. Bringing championship-level entertainment to fans across 63 countries.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-link">X</a>
+            <a href="#" class="social-link">IG</a>
+            <a href="#" class="social-link">YT</a>
+            <a href="#" class="social-link">FB</a>
+            <a href="#" class="social-link">TK</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Organization</div>
+          <ul class="footer-links">
+            <li><a href="#">About Apex</a></li>
+            <li><a href="#">Leadership</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press Room</a></li>
+            <li><a href="#">Partnerships</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Competition</div>
+          <ul class="footer-links">
+            <li><a href="#events">Events</a></li>
+            <li><a href="#fighters">Fighters</a></li>
+            <li><a href="#rankings">Rankings</a></li>
+            <li><a href="#">Weight Classes</a></li>
+            <li><a href="#">Rules & Regulations</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Fan Zone</div>
+          <ul class="footer-links">
+            <li><a href="#">Buy Tickets</a></li>
+            <li><a href="#">Merchandise</a></li>
+            <li><a href="#">Fight Pass</a></li>
+            <li><a href="#news">News & Media</a></li>
+            <li><a href="#">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 Apex Combat MMA. All rights reserved.</span>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ SCRIPTS ═══════════════════════════ -->
+  <script>
+    // ── Nav scroll effect ──────────────────────────────────────
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ── Intersection Observer for reveal animations ────────────
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    // ── Counter animation for stat numbers ────────────────────
+    function animateCounter(el, target, suffix = '') {
+      const numTarget = parseInt(target.replace(/[^0-9]/g, ''));
+      const prefix = target.replace(/[0-9,+]/g, '').replace(/\s/g, '');
+      let current = 0;
+      const step = Math.ceil(numTarget / 60);
+      const timer = setInterval(() => {
+        current = Math.min(current + step, numTarget);
+        el.textContent = current.toLocaleString() + (target.includes('+') ? '+' : '') + suffix;
+        if (current >= numTarget) clearInterval(timer);
+      }, 25);
+    }
+
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const original = el.textContent;
+          animateCounter(el, original);
+          statObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-number, .hero-stat-value').forEach(el => {
+      statObserver.observe(el);
+    });
+
+    // ── Mobile hamburger (basic toggle) ───────────────────────
+    document.getElementById('hamburger').addEventListener('click', () => {
+      const links = document.querySelector('.nav-links');
+      links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+    });
+  </script>
 
 </body>
 </html>
